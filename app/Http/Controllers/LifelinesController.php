@@ -32,24 +32,6 @@ class LifelinesController extends Controller
      * @author Sam Ciaramilaro <sam.ciaramilaro@tattoodo.com>
      *
      * @param Request $request
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    private function getLifeLineCollection(Request $request)
-    {
-        $query = Lifeline::with('user');
-
-        if ($name = $request->get('name')) {
-            $query->whereName($name);
-        }
-
-        return $query->orderBy('id', 'DESC')->get();
-    }
-
-
-    /**
-     * @author Sam Ciaramilaro <sam.ciaramilaro@tattoodo.com>
-     *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function help(Request $request)
@@ -75,6 +57,7 @@ class LifelinesController extends Controller
 
         return response()->json($lifelines);
     }
+
 
     /**
      * @param Lifeline $lifeline
@@ -103,5 +86,22 @@ class LifelinesController extends Controller
         }
 
         return response()->json(['data' => $lifeline->toArray()], 201);
+    }
+
+    /**
+     * @author Sam Ciaramilaro <sam.ciaramilaro@tattoodo.com>
+     *
+     * @param Request $request
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    private function getLifeLineCollection(Request $request)
+    {
+        $query = Lifeline::with('user');
+
+        if ($name = $request->get('name')) {
+            $query->whereName($name);
+        }
+
+        return $query->orderBy('id', 'DESC')->get();
     }
 }
