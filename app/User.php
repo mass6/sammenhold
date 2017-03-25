@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'is_patient'
+        'name', 'email', 'password', 'phone'
     ];
 
     /**
@@ -25,9 +25,5 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
-    ];
-
-    protected $casts = [
-        'is_patient' => 'boolean',
     ];
 }

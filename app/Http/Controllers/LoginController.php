@@ -15,7 +15,6 @@ class LoginController extends Controller
                 "name"       => $user->name,
                 "email"      => $user->email,
                 "phone"      => $user->phone,
-                "isPatient" => $user->is_patient ?? false,
             ]]);
         }
 
