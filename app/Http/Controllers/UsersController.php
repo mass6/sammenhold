@@ -11,8 +11,8 @@ class UsersController extends Controller
     {
         try {
             $user = User::create([
-                'name'       => $request->name,
-                'email'      => $request->email,
+                'name'       => $request->get('name'),
+                'email'      => $request->get('email'),
                 'phone'      => $request->get('phone'),
                 'is_patient' => $request->get('isPatient', false),
                 'password'   => bcrypt('unity'),
