@@ -11,6 +11,22 @@
 |
 */
 
+use App\Mail\Welcome;
+
+Route::get('test',
+    function () {
+        // \Mail::send('emails.welcome', ['key' => 'value'], function($message)
+        // {
+        //     $message->to('sam.ciaramilaro@tattoodo.com', 'Sam Ciaramilaro')->subject('Welcome!');
+        // });
+
+        \Mail::to('sam.ciaramilaro@tattoodo.com', 'Sam Ciaramilaro')
+            ->queue(new Welcome());
+
+        return 'Mail has been queued!';
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
