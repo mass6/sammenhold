@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Mail\Welcome;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -16,6 +17,9 @@ class UsersController extends Controller
                 'phone'      => $request->get('phone'),
                 'password'   => bcrypt('unity'),
             ]);
+
+            \Mail::to($user)->queue(new Welcome());
+
         } catch (\Exception $e)
         {
             return response()->json(['error' => $e->getMessage()], 500);
